@@ -1,5 +1,4 @@
-autoload -U add-zsh-hook
-load-nvmrc() {
+zsh-nvm-checker() {
   local node_version="$(nvm version)"
   local nvmrc_path="$(nvm_find_nvmrc)"
 
@@ -15,5 +14,8 @@ load-nvmrc() {
     nvm use default --silent
   fi
 }
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+
+zsh-nvm-checker
+
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd zsh-nvm-checker
